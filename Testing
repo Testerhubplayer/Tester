@@ -1,0 +1,84 @@
+-- Put this LocalScript inside StarterPlayer -> StarterPlayerScripts
+
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+-- Function to create the ScreenGui and button
+local function createButton()
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Name = "CircleButtonGui"
+    screenGui.Enabled = true
+    screenGui.IgnoreGuiInset = true
+    screenGui.Parent = player:WaitForChild("PlayerGui")
+
+    local circleButton = Instance.new("TextButton")
+    circleButton.Name = "E"
+    circleButton.Text = "E"
+    circleButton.Size = UDim2.new(0, 100, 0, 100)
+    circleButton.Position = UDim2.new(1, -120, 0.5, -50)
+    circleButton.BackgroundColor3 = Color3.new(1, 0, 0)
+    circleButton.Parent = screenGui
+
+    local buttonText = Instance.new("TextLabel")
+    buttonText.Text = "E"
+    buttonText.Size = UDim2.new(1, 0, 1, 0)
+    buttonText.TextColor3 = Color3.new(1, 1, 1)
+    buttonText.BackgroundTransparency = 1
+    buttonText.Parent = circleButton
+
+    circleButton.MouseButton1Click:Connect(function()
+        print("Button clicked!")
+
+        local replicatedStorage = game:GetService("ReplicatedStorage")
+        local camera = game:GetService("Workspace").CurrentCamera
+        local selfKnockback = replicatedStorage:WaitForChild("SelfKnockback")
+
+        local cameraLookVector = camera.CFrame.LookVector
+        local knockBackDirection = Vector3.new(cameraLookVector.X, 0, cameraLookVector.Z).Unit
+        knockBackDirection = knockBackDirection + (Vector3.new(0, 1, 0) * 0.5)
+
+        selfKnockback:FireServer({
+            ["Force"] = 90,
+            ["Direction"] = knockBackDirection
+        })
+    end)
+
+    return screenGui
+end
+
+-- Create the initial button
+local screenGui = createButton()
+
+-- Function to update the button's position
+local function updateButtonPosition()
+    local screenSize = workspace.CurrentCamera.ViewportSize
+    screenGui.Adornee = character:FindFirstChild("Head") or character:WaitForChild("Humanoid").Parent
+    screenGui.Position = UDim2.new(1, -120, 0.5, -50)
+end
+
+-- Update position initially
+updateButtonPosition()
+
+-- Update position when the screen size changes
+workspace.CurrentCamera:GetPropertyChangedSignal("ViewportSize"):Connect(updateButtonPosition)
+
+-- Function to handle character respawn
+local function onCharacterAdded(newCharacter)
+    character = newCharacter
+    humanoid = character:WaitForChild("Humanoid")
+    
+    humanoid.Died:Connect(function()
+        humanoid = character:WaitForChild("Humanoid")
+        humanoid.Died:Wait()
+        updateButtonPosition()
+    end)
+end
+
+-- Connect the onCharacterAdded function
+player.CharacterAdded:Connect(onCharacterAdded)
+
+-- Cleanup when the player leaves the game
+player.PlayerRemoving:Connect(function()
+    screenGui:Destroy()
+end)

@@ -1,0 +1,2518 @@
+local OrionLib = loadstring(game:HttpGet(("https://raw.githubusercontent.com/Giangplay/Script/main/Orion_Library_PE_V2.lua")))()
+local Window = OrionLib:MakeWindow({IntroText = "Ability Wars🤛", IntroIcon = "rbxassetid://16574558113",Name = "✌️🇵🇭 Tester Hub Ability Wars 🇵🇭✌️", HidePremium = false, SaveConfig = true, IntroEnabled = true, ConfigFolder = "Tester Hub ability wars"})
+
+--[[
+Name = <string> - The name of the UI.
+HidePremium = <bool> - Whether or not the user details shows Premium status or not.
+SaveConfig = <bool> - Toggles the config saving in the UI.
+ConfigFolder = <string> - The name of the folder where the configs are saved.
+IntroEnabled = <bool> - Whether or not to show the intro animation.
+IntroText = <Tester hub> - Text to show in the intro animation.
+IntroIcon = <rbxassetid://16544818461> - URL to the image you want to use in the intro animation.
+Icon = <string> - URL to the image you want displayed on the window.
+CloseCallback = <function> - Function to execute when the window is closed.
+]]
+
+OrionLib:MakeNotifi({
+	Title = "Hello!",
+	Text = "ty for using this version of tester hub ability wars I hope you enjoy the script ",
+	Time = 5
+})
+--[[
+Title = <string> - The title of the notification.
+Text = <string> - The content of the notification.
+Time = <number> - The duration of the notfication.
+]]
+
+local Tab = Window:MakeTab({
+	Name = "admin | scripts | executors",
+	Icon = "rbxassetid://16574559304",
+	PremiumOnly = false
+})
+
+local Tab1 = Window:MakeTab({
+	Name = "misc",
+	Icon = "rbxassetid://16574556171",
+	PremiumOnly = false
+})
+
+--[[
+Name = <string> - The name of the tab.
+Icon = <string> - The icon of the tab.
+PremiumOnly = <bool> - Makes the tab accessible to Sirus Premium users only.
+]]
+
+local Tab2 = Window:MakeTab({
+	Name = "equip abilities",
+	Icon = "rbxassetid://16574554023",
+	PremiumOnly = false
+})
+
+--[[
+Name = <string> - The name of the tab.
+Icon = <string> - The icon of the tab.
+PremiumOnly = <bool> - Makes the tab accessible to Sirus Premium users only.
+]]
+
+local Tab3 = Window:MakeTab({
+	Name = "combat",
+	Icon = "rbxassetid://16574552389",
+	PremiumOnly = false
+})
+
+--[[
+Name = <string> - The name of the tab.
+Icon = <string> - The icon of the tab.
+PremiumOnly = <bool> - Makes the tab accessible to Sirus Premium users only.
+]]
+
+local Tab4 = Window:MakeTab({
+	Name = "speed/jump",
+	Icon = "rbxassetid://16574550878",
+	PremiumOnly = false
+})
+
+--[[
+Name = <string> - The name of the tab.
+Icon = <string> - The icon of the tab.
+PremiumOnly = <bool> - Makes the tab accessible to Sirus Premium users only.
+]]
+
+local Tab5 = Window:MakeTab({
+	Name = "antis",
+	Icon = "rbxassetid://16574549378",
+	PremiumOnly = false
+})
+
+--[[
+Name = <string> - The name of the tab.
+Icon = <string> - The icon of the tab.
+PremiumOnly = <bool> - Makes the tab accessible to Sirus Premium users only.
+]]
+
+local Tab6 = Window:MakeTab({
+	Name = " get badge",
+	Icon = "rbxassetid://16605668773",
+	PremiumOnly = false
+})
+
+--[[
+Name = <string> - The name of the tab.
+Icon = <string> - The icon of the tab.
+PremiumOnly = <bool> - Makes the tab accessible to Sirus Premium users only.
+]]
+
+local Tab7 = Window:MakeTab({
+	Name = "teleport",
+	Icon = "rbxassetid://16605664862",
+	PremiumOnly = false
+})
+
+--[[
+Name = <string> - The name of the tab.
+Icon = <string> - The icon of the tab.
+PremiumOnly = <bool> - Makes the tab accessible to Sirus Premium users only.
+]]
+
+
+Tab4:AddSlider({
+	Name = "Walkspeed",
+	Min = 20,
+	Max = 1000,
+	Default = 20,
+	Color = Color3.fromRGB(140, 185, 255),
+	Increment = 1,
+	ValueName = "WS",
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+Walkspeed = Value
+	end    
+})
+Tab4:AddToggle({
+	Name = "Keep Walkspeed",
+	Default = false,
+	Callback = function(Value)
+KeepWalkspeed = Value
+            while KeepWalkspeed do
+                if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") ~= nil and game.Players.LocalPlayer.Character.Humanoid.WalkSpeed ~= Walkspeed then
+                    game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").WalkSpeed = Walkspeed
+                end
+task.wait()
+            end
+	end    
+})
+
+Tab4:AddSlider({
+	Name = "Jumppower",
+	Min = 50,
+	Max = 1000,
+	Default = 50,
+	Color = Color3.fromRGB(255, 185, 140),
+	Increment = 1,
+	ValueName = "JP",
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+Jumppower = Value
+	end    
+})
+Tab4:AddToggle({
+	Name = "Keep Jumppower",
+	Default = false,
+	Callback = function(Value)
+KeepJumppower = Value
+            while KeepJumppower do
+                if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") ~= nil and game.Players.LocalPlayer.Character.Humanoid.WalkSpeed ~= Jumppower then
+                    game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").WalkSpeed = Jumppower
+                end
+task.wait()
+            end
+	end    
+})
+
+Tab3:AddToggle({
+                    Name = "Expand others' hitboxes",
+                    Default = false,
+                    Callback = function(Value)
+Hitbox = Value
+if Hitbox == false then
+for i,v in pairs(game.Players:GetChildren()) do
+                    if v ~= game.Players.LocalPlayer then
+                        v.Character.HumanoidRootPart.Size = Vector3.new(2, 2, 1)
+                        v.Character.HumanoidRootPart.Transparency = 1
+                    end
+                end
+end
+while Hitbox do
+for i,v in pairs(game.Players:GetChildren()) do
+                    if v ~= game.Players.LocalPlayer then
+                        v.Character.HumanoidRootPart.Size = Vector3.new(30,30,30)
+                        v.Character.HumanoidRootPart.Transparency = 0.75
+                    end
+                end
+task.wait()
+end
+end
+                })
+
+Tab3:AddToggle({
+                    Name = "Punch Aura",
+                    Default = false,
+                    Callback = function(Value)
+PunchAura = Value
+                while PunchAura do
+for i,v in pairs(game.Players:GetChildren()) do
+                    if v ~= game.Players.LocalPlayer and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and v.Character then
+if v.Character:FindFirstChild("HumanoidRootPart") then
+Magnitude = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Character.HumanoidRootPart.Position).Magnitude
+                        if 25 >= Magnitude then
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").Punch:FireServer(v.Character,Vector3.new,0,v.Character:FindFirstChild("Head"))
+                    end
+end
+end
+                end
+wait(.4)
+end
+end
+                })
+
+Tab3:AddToggle({
+                    Name = "Kill Aura",
+                    Default = false,
+                    Callback = function(Value)
+KillAura = Value
+                while KillAura do
+-- ABILITY WARS KILL AURA MADE BY dvyct ON DISCORD
+local Punch = game.ReplicatedStorage["Remote Events"].Punch
+local run = game:GetService("RunService")
+local KillAuraSettings = {
+    Range = 9 -- in studs
+}
+run.RenderStepped:Connect(function()
+for i, v in ipairs(game.Players:GetChildren()) do
+if v ~= game.Players.LocalPlayer then
+       if (v.Character.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= KillAuraSettings.Range then
+    local args = {
+        [1] = v.Character,
+        [2] = nil,
+        [3] = 1.1934901475906372,
+        [4] = v.Character.Torso
+      }
+      
+      Punch:FireServer(unpack(args))
+end
+end
+end
+end)
+                   
+wait(.4)
+end
+end
+                })
+
+Tab5:AddToggle({
+                    Name = "Anti Kick",
+                    Default = false,
+                    Callback = function(Value)
+AntiKick = Value
+while AntiKick do
+for i,v in pairs(game.CoreGui.RobloxPromptGui.promptOverlay:GetDescendants()) do
+                    if v.Name == "ErrorPrompt" then
+game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
+                    end
+                end
+task.wait()
+end
+end
+})
+
+Tab5:AddToggle({
+                    Name = "Anti Card",
+                    Default = false,
+                    Callback = function(Value)
+AntiCard = Value
+while AntiCard do
+for i,v in pairs(game.Workspace:GetChildren()) do
+                    if v.ClassName == "Part" and v:FindFirstChild("TouchInterest") and v:FindFirstChild("Decal") then
+                        v.CanTouch = false
+                    end
+                end
+                task.wait()
+                end
+                    end    
+                })
+
+Tab5:AddToggle({
+                    Name = "Anti Barrier",
+                    Default = false,
+                    Callback = function(Value)
+AntiBarrier = Value
+while AntiBarrier do
+for i,v in pairs(game.Workspace:GetChildren()) do
+                    if v.Name == "Barrier Wall" and v:FindFirstChild("TouchInterest") then
+                        v.CanTouch = false
+                        v.CanCollide = false
+                    end
+                end
+                task.wait()
+                end
+                    end    
+                })
+
+Tab5:AddToggle({
+                    Name = "Anti Soap",
+                    Default = false,
+                    Callback = function(Value)
+AntiSoap = Value
+while AntiSoap do
+for i,v in pairs(game.Workspace:GetChildren()) do
+                    if v.Name == "Soap" and v:FindFirstChild("TouchInterest") then
+                        v.CanTouch = false
+                        v.CanCollide = false
+                    end
+                end
+                task.wait()
+                end
+                    end    
+                })
+
+Tab5:AddToggle({
+                    Name = "Anti Cauldron",
+                    Default = false,
+                    Callback = function(Value)
+if Value == true then
+game.Workspace.Main.Shop.Attic.Alchemy["Alchemist Cauldron"]["Character Kill"].CanTouch = false
+else
+game.Workspace.Main.Shop.Attic.Alchemy["Alchemist Cauldron"]["Character Kill"].CanTouch = true
+        end
+                    end    
+                })
+
+Tab5:AddLabel("anti void is broken 😭")
+
+Tab6:AddButton({
+	Name = "Get grocery shopping badge",
+	Callback = function()
+firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace["Map Items"].Burger.TouchInterest.Parent, 0)
+firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace["Map Items"].Burger.TouchInterest.Parent, 1)
+firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace["Map Items"].Cake.TouchInterest.Parent, 0)
+firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace["Map Items"].Cake.TouchInterest.Parent, 1)
+firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace["Map Items"].Pizza.TouchInterest.Parent, 0)
+firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace["Map Items"].Pizza.TouchInterest.Parent, 1)
+  	end    
+})
+
+Tab6:AddButton({
+	Name = "Get cake badge",
+	Callback = function()
+firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace["Map Items"].Cake.TouchInterest.Parent, 0)
+firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace["Map Items"].Cake.TouchInterest.Parent, 1)
+  	end    
+})
+
+Tab6:AddButton({
+	Name = "Get boing badge",
+	Callback = function()
+game:GetService("ReplicatedStorage"):WaitForChild("Remote Events"):WaitForChild("BigMushroomEvent"):FireServer()
+  	end    
+})
+
+Tab6:AddButton({
+	Name = "Get Alchemist badge (Needs 750p and cake) (Use priv server)",
+	Callback = function()
+      		game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer("Soap")
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").ActivateStarted:FireServer("Normal")
+wait(0.1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25,35,110)
+wait(0.25)
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilityEvent:FireServer(1)
+wait(0.1)
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").Respawn:FireServer()
+wait(3.75)
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer("Cake")
+wait(0.1)
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").ActivateStarted:FireServer("Normal")
+wait(0.1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25,35,110)
+wait(0.25)
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilityEvent:FireServer(1)
+wait(0.1)
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").Respawn:FireServer()
+wait(3.75)
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer("Glue")
+wait(0.1)
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").ActivateStarted:FireServer("Normal")
+wait(0.1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25,35,110)
+wait(0.25)
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilityEvent:FireServer(1)
+wait(0.1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25,35,106)
+  	end    
+})
+
+Tab6:AddButton({
+	Name = "Get Gelatinous badge (Needs 1450p) (Use priv server)",
+	Callback = function()
+      		game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").ActivateStarted:FireServer("Normal")
+firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace["Map Items"].Gel.TouchInterest.Parent, 0)
+firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace["Map Items"].Gel.TouchInterest.Parent, 1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25.5,34,110)
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").Respawn:FireServer()
+wait(3.75)
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer("Slime")
+wait(0.1)
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").ActivateStarted:FireServer("Normal")
+wait(0.1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25,35,110)
+wait(0.25)
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilityEvent:FireServer(1)
+wait(0.1)
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").Respawn:FireServer()
+wait(3.75)
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer("Mushroom")
+wait(0.1)
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").ActivateStarted:FireServer("Normal")
+wait(0.1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25,35,110)
+wait(0.1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25,35,106)
+  	end    
+})
+
+
+Tab1:AddToggle({
+                    Name = "Auto Kill Boss",
+                    Default = false,
+                    Callback = function(Value)
+if game.Workspace:FindFirstChild("Dog") then
+Boss = "Dog"
+   elseif game.Workspace:FindFirstChild("Cat") then
+Boss = "Cat"
+   elseif game.Workspace:FindFirstChild("Tree Lord") then
+Boss = "Tree Lord"
+   elseif game.Workspace:FindFirstChild("Mushroom King") then
+Boss = "Mushroom King"
+   elseif game.Workspace:FindFirstChild("Scarecrow") then
+Boss = "Scarecrow"
+end
+AutoKillBoss = Value
+if Boss ~= nil then
+                while AutoKillBoss do
+game.ReplicatedStorage["Remote Events"].Punch:FireServer(workspace:WaitForChild(Boss),Vector3.new,0,workspace[Boss]:FindFirstChild("Right Leg"))
+wait(.1)
+end
+end
+end
+                })
+
+Tab1:AddToggle({
+                    Name = "Auto Remove Nametag",
+                    Default = false,
+                    Callback = function(Value)
+AutoRemoveNameTag = Value
+        if AutoRemoveNameTag then
+        game.Players.LocalPlayer.Character:FindFirstChild("Head")["Name Tag"].TextLabel:Destroy()
+            game.Players.LocalPlayer.CharacterAdded:Connect(function()
+                if AutoRemoveNameTag then
+                repeat task.wait()
+                until game.Players.LocalPlayer.Character:FindFirstChild("Head")
+                game.Players.LocalPlayer.Character:FindFirstChild("Head")["Name Tag"].TextLabel:Destroy()
+                end
+            end)
+        end
+end
+                })
+
+Tab1:AddButton({
+	Name = "Get Portal Mastery (Use in arena) (Resets character)",
+	Callback = function()
+firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace["Portal Facility"].Rift.Portal.Front.TouchInterest.Parent, 0)
+firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace["Portal Facility"].Rift.Portal.Front.TouchInterest.Parent, 1)
+  	end    
+})
+
+Tab1:AddButton({
+	Name = "make engineer hitboxs large",
+	Callback = function()
+      		local model
+
+for i,v in pairs(game:GetService("Workspace")["Engineer Builds"]:GetDescendants()) do
+if v == game.Players.LocalPlayer.Character.Humanoid.SeatPart then
+   model = v.Parent.Parent
+   end
+end
+getgenv().shid = true
+while getgenv().shid do
+   task.wait()
+for i,v in pairs(game.Players:GetPlayers()) do
+   firetouchinterest(Workspace:WaitForChild(v.Name):WaitForChild("HumanoidRootPart"),model.Floor.Part,0)
+   task.wait(0.01)
+   firetouchinterest(Workspace:WaitForChild(v.Name):WaitForChild("HumanoidRootPart"),model.Floor.Part,1)
+end
+end
+  	end    
+})
+
+Tab1:AddButton({
+	Name = "Get 150 punches from quests (Needs at least 250 punches)",
+	Callback = function()
+	Location = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+      		game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").RequestQuestEvent:InvokeServer("Buy an Item from the Wood Shack")
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").BuyItem:FireServer("Gain Kick")
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").RequestQuestEvent:InvokeServer("Find The Backrooms")
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-122,21,-119)
+wait(0.1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Location
+  	end    
+})
+
+Tab7:AddButton({
+	Name = "inside the lobby",
+	Callback = function() 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(5, 304, 5)
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+
+Tab7:AddButton({
+	Name = "top of lobby",
+	Callback = function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-28, 329, 2)
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+
+Tab7:AddButton({
+	Name = "arena",
+	Callback = function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-5, 18, 12)
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+
+Tab7:AddButton({
+	Name = "house atic",
+	Callback = function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 33, 118)
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+
+Tab7:AddButton({
+	Name = "house",
+	Callback = function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-22, 18, 107)
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+
+Tab7:AddButton({
+	Name = "in top of house",
+	Callback = function()
+      		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-22, 49, 111)
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+
+Tab7:AddButton({
+	Name = "pool",
+	Callback = function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-111, 24, 105)
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+
+Tab7:AddButton({
+	Name = "mystic cave",
+	Callback = function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(93, 39, -94)
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+
+Tab7:AddButton({
+	Name = "in top of mystic cave",
+	Callback = function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(97, 56, -95)
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+
+Tab7:AddButton({
+	Name = "cave",
+	Callback = function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-92, 19, -115)
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+
+Tab7:AddButton({
+	Name = "Crystal cave",
+	Callback = function()
+      		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-91, 33, -98)
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+
+Tab7:AddButton({
+	Name = "in top of cave n crystal cave",
+	Callback = function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-74, 56, -91)
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+
+Tab7:AddButton({
+	Name = "giant tree",
+	Callback = function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(92, 85, 106)
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+
+Tab7:AddButton({
+	Name = "inventor",
+	Callback = function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(91, 64, 103)
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+
+Tab3:AddToggle({
+                    Name = "Expand others' hitboxes but bigger",
+                    Default = false,
+                    Callback = function(Value)
+Hitbox = Value
+if Hitbox == false then
+for i,v in pairs(game.Players:GetChildren()) do
+                    if v ~= game.Players.LocalPlayer then
+                        v.Character.HumanoidRootPart.Size = Vector3.new(9, 9, 9)
+                        v.Character.HumanoidRootPart.Transparency = 1
+                    end
+                end
+end
+while Hitbox do
+for i,v in pairs(game.Players:GetChildren()) do
+                    if v ~= game.Players.LocalPlayer then
+                        v.Character.HumanoidRootPart.Size = Vector3.new(90,90,90)
+                        v.Character.HumanoidRootPart.Transparency = 0.75
+                    end
+                end
+task.wait()
+end
+end
+                })
+
+Tab3:AddToggle({
+                    Name = "E Ability Spam (All abilities)",
+                    Default = false,
+                    Callback = function(Value)
+AbilitySpam = Value
+while AbilitySpam do
+local args = {
+    [1] = 1
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilityEvent:FireServer(unpack(args))
+
+task.wait()
+end
+                    end    
+                })
+
+Tab3:AddToggle({
+                    Name = "Q Ability Spam (All abilities)",
+                    Default = false,
+                    Callback = function(Value)
+AbilitySpam = Value
+while AbilitySpam do
+local args = {
+    [1] = 2
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilityEvent:FireServer(unpack(args))
+
+task.wait()
+end
+                    end    
+                })
+
+Tab3:AddToggle({
+                    Name = "R Ability Spam (All abilities)",
+                    Default = false,
+                    Callback = function(Value)
+AbilitySpam = Value
+while AbilitySpam do
+local args = {
+    [1] = 3
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilityEvent:FireServer(unpack(args))
+
+task.wait()
+end
+                    end    
+                })
+
+Tab3:AddToggle({
+                    Name = "Q and E Ability Spam (All abilities)",
+                    Default = false,
+                    Callback = function(Value)
+AbilitySpam = Value
+while AbilitySpam do
+local args = {
+    [1] = 2
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilityEvent:FireServer(unpack(args))
+
+local args = {
+    [1] = 1
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilityEvent:FireServer(unpack(args))
+
+task.wait()
+end
+                    end    
+                })
+
+
+
+Tab3:AddToggle({
+                    Name = "R Q E Ability Spam (All abilities)",
+                    Default = false,
+                    Callback = function(Value)
+AbilitySpam = Value
+while AbilitySpam do
+local args = {
+    [1] = 3
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilityEvent:FireServer(unpack(args))
+
+local args = {
+    [1] = 2
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilityEvent:FireServer(unpack(args))
+
+local args = {
+    [1] = 1
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilityEvent:FireServer(unpack(args))
+
+task.wait()
+end
+                    end    
+                })
+
+Tab2:AddButton({
+	Name = "default",
+	Callback = function()
+   local args = {
+    [1] = "Default"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+
+Tab2:AddButton({
+	Name = "soda",
+	Callback = function()
+   local args = {
+    [1] = "Soda"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "teleportation",
+	Callback = function()
+   local args = {
+    [1] = "Teleportation"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "shife",
+	Callback = function()
+   local args = {
+    [1] = "Shift"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "gravity",
+	Callback = function()
+   local args = {
+    [1] = "Gravity"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "glue",
+	Callback = function()
+local args = {
+    [1] = "Glue"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "Boomerang",
+	Callback = function()
+local args = {
+    [1] = "Boomerang"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "soap",
+	Callback = function()
+local args = {
+    [1] = "Soap"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "grapple",
+	Callback = function()
+local args = {
+    [1] = "Grapple"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "Robot",
+	Callback = function()
+local args = {
+    [1] = "Robot"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "buff",
+	Callback = function()
+local args = {
+    [1] = "Buff"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "slime",
+	Callback = function()
+local args = {
+    [1] = "Slime"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "mushroom",
+	Callback = function()
+local args = {
+    [1] = "Mushroom"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "bounty hunter",
+	Callback = function()
+local args = {
+    [1] = "Bounty Hunter"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "overcharge",
+	Callback = function()
+local args = {
+    [1] = "Overcharge"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "hacker programmer",
+	Callback = function()
+local args = {
+    [1] = "Programmer"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "deflect",
+	Callback = function()
+local args = {
+    [1] = "Deflect"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "barrier",
+	Callback = function()
+local args = {
+    [1] = "Barrier"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "magnet",
+	Callback = function()
+local args = {
+    [1] = "Magnet"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "static",
+	Callback = function()
+local args = {
+    [1] = "Static"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "stone",
+	Callback = function()
+local args = {
+    [1] = "Stone"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "snow",
+	Callback = function()
+local args = {
+    [1] = "Snow"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "card",
+	Callback = function()
+local args = {
+    [1] = "Cards"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "meteor",
+	Callback = function()
+local args = {
+    [1] = "Meteor"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "plant",
+	Callback = function()
+local args = {
+    [1] = "Plant"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "lava",
+	Callback = function()
+local args = {
+    [1] = "Lava"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "blood god",
+	Callback = function()
+local args = {
+    [1] = "Blood God"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "bone",
+	Callback = function()
+local args = {
+    [1] = "Bone"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "biotic",
+	Callback = function()
+local args = {
+    [1] = "Bionic"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "crystal",
+	Callback = function()
+local args = {
+    [1] = "Crystal"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "storm",
+	Callback = function()
+local args = {
+    [1] = "Storm"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "paladin",
+	Callback = function()
+local args = {
+    [1] = "Paladin"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "devour of soul",
+	Callback = function()
+local args = {
+    [1] = "Devourer of Souls"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "time",
+	Callback = function()
+local args = {
+    [1] = "Time"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "freeze",
+	Callback = function()
+local args = {
+    [1] = "Freeze"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "pirate",
+	Callback = function()
+local args = {
+    [1] = "Pirate"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "cosmo",
+	Callback = function()
+local args = {
+    [1] = "Cosmos"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "quantum",
+	Callback = function()
+local args = {
+    [1] = "Quantum"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "railgun",
+	Callback = function()
+local args = {
+    [1] = "Railgun"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "stardust",
+	Callback = function()
+local args = {
+    [1] = "Stardust"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "plasma",
+	Callback = function()
+local args = {
+    [1] = "Plasma"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+local Section = Tab2:AddSection({
+	Name = "badge ability"
+})
+
+--[[
+Name = <string> - The name of the section.
+]]
+Tab2:AddButton({
+	Name = "randomizer",
+	Callback = function()
+local args = {
+    [1] = "Randomize"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "cake",
+	Callback = function()
+local args = {
+    [1] = "Cake"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "bomb",
+	Callback = function()
+local args = {
+    [1] = "Bomb"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "engineer",
+	Callback = function()
+local args = {
+    [1] = "Engineer"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "combo",
+	Callback = function()
+local args = {
+    [1] = "Combo"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "hero of justice",
+	Callback = function()
+local args = {
+    [1] = "Hero of Justice"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "spring",
+	Callback = function()
+local args = {
+    [1] = "Spring"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "brick battler",
+	Callback = function()
+local args = {
+    [1] = "Brickbattler"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "lemon",
+	Callback = function()
+local args = {
+    [1] = "Lemon"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "spectral",
+	Callback = function()
+local args = {
+    [1] = "Spectral"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "tree",
+	Callback = function()
+local args = {
+    [1] = "Tree"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "hivemind",
+	Callback = function()
+local args = {
+    [1] = "Hivemind"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "portal",
+	Callback = function()
+local args = {
+    [1] = "Portal"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "pulse",
+	Callback = function()
+local args = {
+    [1] = "Pulse"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "mystic",
+	Callback = function()
+local args = {
+    [1] = "Mystic"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "return",
+	Callback = function()
+local args = {
+    [1] = "Return"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "jello",
+	Callback = function()
+local args = {
+    [1] = "Jello"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "bubble",
+	Callback = function()
+local args = {
+    [1] = "Bubble"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "defender",
+	Callback = function()
+local args = {
+    [1] = "Defender"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "alchemist",
+	Callback = function()
+local args = {
+    [1] = "Alchemist"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "army",
+	Callback = function()
+local args = {
+    [1] = "Army"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "farmer",
+	Callback = function()
+local args = {
+    [1] = "Farmer"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "gingerbread",
+	Callback = function()
+local args = {
+    [1] = "Gingerbread"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "mech",
+	Callback = function()
+local args = {
+    [1] = "Mech"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "Ufo",
+	Callback = function()
+local args = {
+    [1] = "UFO"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "double jump",
+	Callback = function()
+local args = {
+    [1] = "Double Jump"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+local Section = Tab2:AddSection({
+	Name = "secret ability"
+})
+
+--[[
+Name = <string> - The name of the section.
+]]
+Tab2:AddButton({
+	Name = "energy drink",
+	Callback = function()
+local args = {
+    [1] = "Energy Drink"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "coffee",
+	Callback = function()
+local args = {
+    [1] = "Coffee"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "spectator",
+	Callback = function()
+local args = {
+    [1] = "Spectator"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "jester",
+	Callback = function()
+local args = {
+    [1] = "Jester"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "butter",
+	Callback = function()
+local args = {
+    [1] = "Butter"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "moai",
+	Callback = function()
+local args = {
+    [1] = "Moai"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "cheese",
+	Callback = function()
+local args = {
+    [1] = "Cheese"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "dice",
+	Callback = function()
+local args = {
+    [1] = "Dice"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "burger",
+	Callback = function()
+local args = {
+    [1] = "Burger"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+
+Tab2:AddButton({
+	Name = "kick have to be at arena",
+	Callback = function()
+local args = {
+    [1] = "Gain Kick"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").BuyItem:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+local Section = Tab2:AddSection({
+	Name = "deleted abilities this probably doesn't work"
+})
+
+--[[
+Name = <string> - The name of the section.
+]]
+Tab2:AddButton({
+	Name = "dice is back",
+	Callback = function()
+local args = {
+    [1] = "Dice"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "Mind control",
+	Callback = function()
+local args = {
+    [1] = "Mind Control"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "bind",
+	Callback = function()
+local args = {
+    [1] = "Bind"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "shackle",
+	Callback = function()
+local args = {
+    [1] = "Shackle"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab2:AddButton({
+	Name = "Discombobulate",
+	Callback = function()
+local args = {
+    [1] = "Discombobulate"
+}
+
+game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").AbilitySelect:FireServer(unpack(args))
+
+      		print("button pressed")
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+
+
+Tab1:AddToggle({
+                    Name = "Auto Kill Boss this included inventor",
+                    Default = false,
+                    Callback = function(Value)
+if game.Workspace:FindFirstChild("Dog") then
+Boss = "Dog"
+   elseif game.Workspace:FindFirstChild("Cat") then
+Boss = "Cat"
+   elseif game.Workspace:FindFirstChild("Tree Lord") then
+Boss = "Tree Lord"
+   elseif game.Workspace:FindFirstChild("Mushroom King") then
+Boss = "Mushroom King"
+   elseif game.Workspace:FindFirstChild("Scarecrow") then
+Boss = "Scarecrow"
+elseif game.Workspace:FindFirstChild("Inventor") then
+Boss = "Inventor"
+end
+AutoKillBoss = Value
+if Boss ~= nil then
+                while AutoKillBoss do
+game.ReplicatedStorage["Remote Events"].Punch:FireServer(workspace:WaitForChild(Boss),Vector3.new,0,workspace[Boss]:FindFirstChild("Right Leg"))
+wait(.1)
+end
+end
+end
+                })
+
+Tab6:AddButton({
+	Name = "get lemon",
+	Callback = function()
+      		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-123, 19, -119)
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+Tab6:AddButton({
+	Name = "get spectral need lemon and use E",
+	Callback = function()
+      		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(147, 26, 147)
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+                   
+
+Tab5:AddToggle({
+                   Name = "Anti Timestop patched",
+                   Default = false,
+                   Callback = function(Value)
+Jebaiittttt = value
+while Jebaiittttt do
+                for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                    if v.ClassName == "Part" then
+                        v.Anchored = false
+                    end
+                end
+task.wait()
+end
+ 
+                   end
+                   })
+
+Tab1:AddButton({
+                Name = "Tp Defender Boss fight place",
+                Callback = function()
+ 
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-21, 20 ,120)                
+wait(0.1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-36, 33 , 107)
+wait(0.1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(87, 19, 111)
+wait(0.1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(82, 62, 104)
+wait(0.1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-46, 20, 131)
+wait(0.1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(79, 50 , -103)
+wait(0.1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-87, 31 , 127)                
+wait(0.3)                
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(9999, 53, 29998)                
+ 
+                end
+                })
+
+Tab1:AddButton({
+                Name = "Get Lemon mastery (abit Buggy)",
+                Callback = function()
+ 
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-123, 18, -119)
+wait(5)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20007, 394, 22487)
+wait(0.3)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-19513, 393, 22487)
+wait(0.3)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-19513, 393, 21993)
+wait(0.3)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20007, 393, 22487)                
+ 
+ 
+ 
+ 
+ 
+ 
+                end
+                })
+
+
+Tab5:AddButton({
+                 Name = "Anti void",
+                 Callback =  function()
+ 
+local Instance = Instance.new("Part")
+Instance.Parent = workspace
+Instance.Anchored = true
+Instance.Size = Vector3.new(999999,25,999999)
+Instance.Position = Vector3.new(9, 0, -2)         
+ 
+                 end
+                 })
+
+Tab1:AddButton({
+	Name = "become bot if you click this you will become a bot forever in server",
+	Callback = function()
+      		loadstring(game:HttpGet("https://raw.githubusercontent.com/VxleLUA/Zephyr/main/System/Features/CBotLoader.lua"))()
+  	end    
+})
+
+Tab1:AddButton({
+                 Name = "bot speed",
+                 Callback =  function()
+ 
+-- Get the local player
+local player = game.Players.LocalPlayer
+
+-- Set the walkspeed to your desired value (e.g., 16)
+player.Character.Humanoid.WalkSpeed = 50   
+ 
+                 end
+                 })
+
+Tab1:AddButton({
+	Name = "auto farm I recommend using kill or punch aura",
+	Callback = function()
+      		loadstring(game:HttpGet("https://raw.githubusercontent.com/Testerhubplayer/Tester-hubby/main/Auto%20farm%20not%20ai%20control"))()
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+
+local Section = Tab:AddSection({
+	Name = "admin"
+})
+
+--[[
+Name = <string> - The name of the section.
+]]
+
+Tab:AddButton({
+	Name = "fates admin",
+	Callback = function()
+      		loadstring(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))();
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+
+
+Tab:AddButton({
+	Name = "QuirkyCMD",
+	Callback = function()
+loadstring(game:HttpGet("https://gist.github.com/someunknowndude/38cecea5be9d75cb743eac8b1eaf6758/raw"))()
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+
+Tab:AddButton({
+	Name = "KULTHX BAR",
+	Callback = function()
+   
+loadstring(game:HttpGet("https://raw.githubusercontent.com/nizartitwaniii/KulthX-BAR/main/KulthX%20bar"))()
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+
+Tab:AddButton({
+	Name = "nameless admin",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/FilteringEnabled/NamelessAdmin/main/Source"))()
+      		print("button pressed")
+  	end    
+})
+
+Tab:AddButton({
+	Name = "inf yield",
+	Callback = function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+      		print("button pressed")
+  	end    
+})
+
+local Section = Tab:AddSection({
+	Name = "executors"
+})
+
+--[[
+Name = <string> - The name of the section.
+]]
+
+Tab:AddButton({
+	Name = "arceus x",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Script/main/Arceus_X_V3.lua"))()
+      		print("button pressed")
+  	end    
+})
+
+Tab:AddButton({
+	Name = "codex",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Script/main/Codex.lua"))()
+      		print("button pressed")
+  	end    
+})
+
+Tab:AddButton({
+	Name = "knrl",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Script/main/Knrl.lua"))()
+      		print("button pressed")
+  	end    
+})
+
+Tab:AddButton({
+	Name = "krypton",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Script/main/Krypton.lua"))()
+      		print("button pressed")
+  	end    
+})
+
+Tab:AddButton({
+	Name = "synapse 🙄",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Script/main/Synapse_X_PE.lua"))()
+      		print("button pressed")
+  	end    
+})
+
+Tab:AddButton({
+	Name = "delta",
+	Callback = function()
+loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-Delta-Executor-J-O-K-E-7664"))()
+      		print("button pressed")
+  	end    
+})
+
+Tab:AddButton({
+	Name = "kiwi",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Script/main/Kiwi-Ui.lua"))()
+      		print("button pressed")
+  	end    
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+OrionLib:Init()
